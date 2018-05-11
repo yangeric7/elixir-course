@@ -1,6 +1,14 @@
 # Cards
 
-**TODO: Add description**
+[Install Elixir Here](https://elixir-lang.org/install.html)
+
+Get Dependencies with `mix deps.get`
+
+Run Tests with `mix test`
+
+Generate Docs with `mix docs`
+
+Elixir Interactive Shell with `iex -S mix`
 
 ## Installation
 
