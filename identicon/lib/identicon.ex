@@ -7,6 +7,7 @@ defmodule Identicon do
     input
     |> hash_string
     |> pick_color
+    |> build_grid
 
   end
 
@@ -17,8 +18,25 @@ defmodule Identicon do
     %Identicon.Image{hex: hex}
   end
 
-  def pick_color(image) do
-    %Identicon.Image{hex: [r, g, b | _tail]} = image
-    [r, g, b]
+  # We can pattern match properties inside the argument to the function
+  def pick_color(%Identicon.Image{hex: [r, g, b | _tail]} = image) do
+
+    #New Struct to hold in image, but also add into the struct the color
+    %Identicon.Image{image | color: {r, g, b}}
+  end
+
+  def build_grid(%Identicon.Image{hex: hex} = image) do
+    hex
+    |> Enum.chunk(3) # didn't see Enum.chunk(list, count) in docs so equivalent in v1.6.5 is Enum.chunk_every(list, count, count, :discard)
+    |> Enum.map(&mirror_row/1) # passing in reference to function
+
+  end
+
+  def mirror_row(row) do
+    # [145, 46, 200]
+    [first, second | _tail] = row
+
+    # [145, 46, 200, 46, 145] (new operatoe ++ which appends two lists)
+    row  ++ [second, first]
   end
 end
