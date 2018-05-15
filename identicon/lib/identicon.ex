@@ -26,9 +26,14 @@ defmodule Identicon do
   end
 
   def build_grid(%Identicon.Image{hex: hex} = image) do
-    hex
-    |> Enum.chunk(3) # didn't see Enum.chunk(list, count) in docs so equivalent in v1.6.5 is Enum.chunk_every(list, count, count, :discard)
-    |> Enum.map(&mirror_row/1) # passing in reference to function
+    grid =
+      hex
+      |> Enum.chunk(3) # didn't see Enum.chunk(list, count) in docs so equivalent in v1.6.5 is Enum.chunk_every(list, count, count, :discard)
+      |> Enum.map(&mirror_row/1) # passing in reference to function
+      |> List.flatten
+      |> Enum.with_index #this makes a list of tuples with {value, index}
+
+    %Identicon.Image{image | grid: grid}
 
   end
 
