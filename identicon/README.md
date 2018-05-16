@@ -1,6 +1,15 @@
 # Identicon
 
-**TODO: Add description**
+This elixir program generates an identicon, essentially the github profile picture you get when you create a new account.
+This program helped me learn a lot of elixir syntax, practice more pattern matching, and overall idea of functional programming.
+
+[Install Elixir Here](https://elixir-lang.org/install.html)
+
+Get Dependencies with `mix deps.get`
+
+Elixir Interactive Shell with `iex -S mix`
+
+Generate an Identicon with `Identicon.main(<your string here>)`
 
 ## Installation
 
