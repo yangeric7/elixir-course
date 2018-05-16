@@ -10,7 +10,8 @@ defmodule Identicon do
     |> build_grid
     |> filter_odd_squares
     |> build_pixel_map
-
+    |> draw_image
+    |> save_image(input)
   end
 
   def hash_string(input) do
@@ -67,5 +68,20 @@ defmodule Identicon do
     end
 
     %Identicon.Image{image | pixel_map: pixel_map}
+  end
+
+  def draw_image(%Identicon.Image{color: color, pixel_map: pixel_map}) do
+    image = :egd.create(250, 250)
+    fill = :egd.color(color)
+
+    Enum.each pixel_map, fn({start, stop}) ->
+      :egd.filledRectangle(image, start, stop, fill) # we are actually not making a copy but updating the image (rarity in erlang/elixir)
+    end
+
+    :egd.render(image)
+  end
+
+  def save_image(image, filename) do
+    File.write("#{filename}.png", image)
   end
 end

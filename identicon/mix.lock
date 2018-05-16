@@ -1,0 +1,5 @@
+%{
+  "edg": {:git, "https://github.com/erlang/egd.git", "1cea959544de7dd40a3284ba571a58939de57616", []},
+  "eg": {:git, "https://github.com/erlang/egd.git", "1cea959544de7dd40a3284ba571a58939de57616", []},
+  "egd": {:git, "https://github.com/erlang/egd.git", "1cea959544de7dd40a3284ba571a58939de57616", []},
+}
