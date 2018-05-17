@@ -24,3 +24,4 @@ identicon-*.tar
 
 .elixir_ls/
 *.png
+.vscode/
